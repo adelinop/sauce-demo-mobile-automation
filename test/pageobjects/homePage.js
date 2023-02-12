@@ -1,14 +1,19 @@
+const BasePage = require('./basePage')
 
-class HomePage {
-	async loginAcess(user, password) {
-      
-	}
+   const selectors = {
+      user_name: '[id="user-name"]',
+      user_password: '[id="password"]',
+      btn_login: '[id="login-button"]',
+      error_message: '[data-test="error"]'
+   }
+ class HomePage extends BasePage{
 
-   async waitElement(element, timeMs) {
-        await element.waitForExist(timeMs);
-        await element.waitForDisplayed(timeMs);
-        await element.waitForEnabled(timeMs);
-     }
+
+   async acessLogin(){ 
+      await this.sendKeys(selectors.user_name, 'standard_user')
+      await this.sendKeys(selectors.user_password, 'secret_sauce')
+      await this.clickElement(selectors.btn_login)
+   }
 
 }
-module.exports = new HomePage ()
+module.exports = HomePage;
