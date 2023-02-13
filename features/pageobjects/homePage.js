@@ -9,10 +9,15 @@ const BasePage = require('./basePage')
  class HomePage extends BasePage{
 
 
-   async acessLogin(){ 
-      await this.sendKeys(selectors.user_name, 'standard_user')
-      await this.sendKeys(selectors.user_password, 'secret_sauce')
+   async acessLogin(user, password){ 
+      await this.sendKeys(selectors.user_name, user)
+      await this.sendKeys(selectors.user_password, password)
       await this.clickElement(selectors.btn_login)
+   }
+
+   async verifyWrongLoginMessage(){
+      await $(selectors.error_message).waitForDisplayed(10000, false) 
+      await $(selectors.error_message).isExisting()
    }
 
 }
