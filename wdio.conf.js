@@ -2,7 +2,7 @@ const path = require('path')
 let caps = {
         "platformName": "Android",
         "appium:platformVersion": "12.0",
-        "appium:deviceName": "Pixel XL API 31",
+        "appium:deviceName": "Pixel XL API 31 2",
         "appium:automationName": "UIAutomator2",
         "appium:browserName": "chrome",
         "appium:chromedriver_autodownload": "true",
