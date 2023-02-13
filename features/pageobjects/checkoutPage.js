@@ -12,12 +12,14 @@ const BasePage = require('./basePage')
 class CheckoutPage extends BasePage{
    
     async proceedPurchase(){
-        await this.clickElement(btn_checkout)
-        await this.sendKeys(name_input, 'Adelino')
-        await this.sendKeys(last_name_input, 'Test')
-        await this.sendKeys(zip_code_input ,'4050400')
-        await this.clickElement(btn_continue)
-        await this.clickElement(btn_finish)
+        await this.clickElement(selectors.btn_checkout)
+        await this.sendKeys(selectors.name_input, 'Adelino')
+        await this.sendKeys(selectors.last_name_input, 'Test')
+        await this.sendKeys(selectors.zip_code_input ,'4050400')
+    }
+    async completeOrderProcess (){
+        await this.clickElement(selectors.btn_continue)
+        await this.clickElement(selectors.btn_finish)
     }
 }
 module.exports = CheckoutPage;

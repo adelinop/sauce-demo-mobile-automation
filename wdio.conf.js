@@ -7,17 +7,13 @@ let caps = {
         "appium:browserName": "chrome",
         "appium:chromedriver_autodownload": "true",
         "appium:chromedriverExecutable": path.join(process.cwd(),"./app/chromedriver.exe")
-  };
-  exports.config = {
-    runner: 'local',
+};
+exports.config = {
+    runner: 'local', 
     port: 4723,
-    path: '/wd/hub',
-    specs: [
-        './test/specs/**/*.js'
-    ],
-    exclude: [
-    ],
-    maxInstances: 10,
+    specs: ['./features/**/*.feature'],
+    exclude: [],
+    maxInstances: 1,
     capabilities: [caps],
     logLevel: 'info',
     bail: 0,
@@ -26,12 +22,22 @@ let caps = {
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,
     services: ['appium'],
-    framework: 'mocha',
+    framework: 'cucumber',
     reporters: ['spec'],
-    mochaOpts: {
-        ui: 'bdd',
-        timeout: 60000
-    }
+    cucumberOpts: {
+        require: ['./features/step-definitions/*.js'],
+        backtrace: false,
+        requireModule: [],
+        dryRun: false,
+        failFast: false,
+        snippets: true,
+        source: true,
+        strict: false,
+        tagExpression: '',
+        timeout: 60000,
+        ignoreUndefinedDefinitions: false
+    },
+    
     //
     // =====
     // Hooks
@@ -94,48 +100,65 @@ let caps = {
     // beforeCommand: function (commandName, args) {
     // },
     /**
-     * Hook that gets executed before the suite starts
-     * @param {Object} suite suite details
+     * Cucumber Hooks
+     *
+     * Runs before a Cucumber Feature.
+     * @param {String}                   uri      path to feature file
+     * @param {GherkinDocument.IFeature} feature  Cucumber feature object
      */
-    // beforeSuite: function (suite) {
+    // beforeFeature: function (uri, feature) {
     // },
     /**
-     * Function to be executed before a test (in Mocha/Jasmine) starts.
+     *
+     * Runs before a Cucumber Scenario.
+     * @param {ITestCaseHookParameter} world    world object containing information on pickle and test step
+     * @param {Object}                 context  Cucumber World object
      */
-    // beforeTest: function (test, context) {
+    // beforeScenario: function (world, context) {
     // },
     /**
-     * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
-     * beforeEach in Mocha)
+     *
+     * Runs before a Cucumber Step.
+     * @param {Pickle.IPickleStep} step     step data
+     * @param {IPickle}            scenario scenario pickle
+     * @param {Object}             context  Cucumber World object
      */
-    // beforeHook: function (test, context) {
+    // beforeStep: function (step, scenario, context) {
     // },
     /**
-     * Hook that gets executed _after_ a hook within the suite starts (e.g. runs after calling
-     * afterEach in Mocha)
+     *
+     * Runs after a Cucumber Step.
+     * @param {Pickle.IPickleStep} step             step data
+     * @param {IPickle}            scenario         scenario pickle
+     * @param {Object}             result           results object containing scenario results
+     * @param {boolean}            result.passed    true if scenario has passed
+     * @param {string}             result.error     error stack if scenario failed
+     * @param {number}             result.duration  duration of scenario in milliseconds
+     * @param {Object}             context          Cucumber World object
      */
-    // afterHook: function (test, context, { error, result, duration, passed, retries }) {
+    // afterStep: function (step, scenario, result, context) {
     // },
     /**
-     * Function to be executed after a test (in Mocha/Jasmine only)
-     * @param {Object}  test             test object
-     * @param {Object}  context          scope object the test was executed with
-     * @param {Error}   result.error     error object in case the test fails, otherwise `undefined`
-     * @param {Any}     result.result    return object of test function
-     * @param {Number}  result.duration  duration of test
-     * @param {Boolean} result.passed    true if test has passed, otherwise false
-     * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
+     *
+     * Runs after a Cucumber Scenario.
+     * @param {ITestCaseHookParameter} world            world object containing information on pickle and test step
+     * @param {Object}                 result           results object containing scenario results
+     * @param {boolean}                result.passed    true if scenario has passed
+     * @param {string}                 result.error     error stack if scenario failed
+     * @param {number}                 result.duration  duration of scenario in milliseconds
+     * @param {Object}                 context          Cucumber World object
      */
-    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
+    // afterScenario: function (world, result, context) {
     // },
-
-
     /**
-     * Hook that gets executed after the suite has ended
-     * @param {Object} suite suite details
+     *
+     * Runs after a Cucumber Feature.
+     * @param {String}                   uri      path to feature file
+     * @param {GherkinDocument.IFeature} feature  Cucumber feature object
      */
-    // afterSuite: function (suite) {
+    // afterFeature: function (uri, feature) {
     // },
+    
     /**
      * Runs after a WebdriverIO command gets executed
      * @param {String} commandName hook command name
