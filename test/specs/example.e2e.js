@@ -2,19 +2,21 @@ const Applications = require('../pageobjects/Applications')
 const applications = new Applications()
 
 describe('Sample Test', () => {
-    after(()=>{
-        driver.closeApp()
+    after(async()=>{
+        await driver.closeApp()
     })
     before(()=>{
     })
-    it('Sample', async () => {    
-        await browser.url('https://saucedemo.com')
+
+    it('Login', async () => {    
+        await browser.url('')
         await applications.homePage.acessLogin()
+    })
+    it('Add product',async ()=>{
         await applications.listPage.addProductCart()
     })
-
     it('Cart Validation ',async ()=>{
-        applications.checkoutPage.proceedPurchase()
+      await  applications.checkoutPage.proceedPurchase()
     })
 
 })
