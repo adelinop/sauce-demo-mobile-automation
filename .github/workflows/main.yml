@@ -1,0 +1,36 @@
+name: WebdriverIO Appium and Chromedriver Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      appium:
+        image: appium/appium
+        ports:
+          - 4723:4723
+        options: --tmp /tmp/appium
+
+      chromedriver:
+        image: selenium/standalone-chrome:3.141.59
+        ports:
+          - 4444:4444
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Run Appium and Chromedriver
+      run: npm run appium-chromedriver &
+
+    - name: Run Tests
+      run: npm run test
