@@ -33,4 +33,4 @@ jobs:
       run: npm run appium-chromedriver &
 
     - name: Run Tests
-      run: npm run test
+      run: npx wdio
