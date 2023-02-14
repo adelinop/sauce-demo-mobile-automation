@@ -1,4 +1,4 @@
-import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor'
+import { Then } from '@badeball/cypress-cucumber-preprocessor'
 import Applications from '../support/pages/application'
 const applications = new Applications()
 export default class Login {}
