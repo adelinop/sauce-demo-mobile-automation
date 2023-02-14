@@ -7,7 +7,7 @@ Browser Test using Webdriverio + Appium + chromedriver
 <br>
 
 ### Installing Dependencies
-Navigate to the webdriverio-appium-browser/ directory and run npm install to install the dependencies.
+Navigate to the webdriverio-appium-browser/ directory and run "npm install" to install the dependencies.
 
 ### Configuring Emulator
 
@@ -17,10 +17,10 @@ Inside wdio.config.js
 > 	'appium:deviceName': 'EMULATOR_NAME'
 > ```
 
-Verify if the chromedriver is same version that the chrome driver present in /app folder
+Verify if the Chromedriver version matches the version of Chrome driver present in the /app folder
 
-### Configure properly Android Studio
-- [Android Studio tutorial](https://developer.android.com/studio/install)
+### Configure Android Studio properly
+- [See Android Studio tutorial for instructions](https://developer.android.com/studio/install)
 ---
 <br>
 
