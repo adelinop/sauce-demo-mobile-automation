@@ -1,0 +1,8 @@
+node_modules
+cypress/videos
+cypress/reports
+.vscode
+results
+reports
+jenkins.war
+jsonlogs
