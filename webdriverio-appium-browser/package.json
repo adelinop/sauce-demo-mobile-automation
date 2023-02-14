@@ -4,7 +4,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "wdio": "wdio run ./wdio.conf.js"
+    "wdio": "wdio run ./wdio.conf.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "formatter": "prettier --write \"features/**/*.{js,jsx}\" && eslint \"features/**/*.{js,jsx}\""
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +24,12 @@
     "@wdio/mocha-framework": "^8.3.0",
     "@wdio/sauce-service": "^8.3.3",
     "@wdio/spec-reporter": "^8.3.0",
-    "appium": "^1.22.3"
+    "appium": "^1.22.3",
+    "eslint": "^8.34.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-chai-friendly": "^0.7.2",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-wdio": "^8.0.14",
+    "prettier": "^2.8.4"
   }
 }

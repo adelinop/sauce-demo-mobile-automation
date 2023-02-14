@@ -1,17 +1,17 @@
 const path = require('path')
-let caps = {
-        "platformName": "Android",
-        "appium:platformVersion": "12.0",
-        "appium:deviceName": "Pixel XL API 31 2",
-        "appium:automationName": "UIAutomator2",
-        "appium:browserName": "chrome",
-        "appium:chromedriver_autodownload": "true",
-        "appium:chromedriverExecutable": path.join(process.cwd(),"./app/chromedriver.exe")
-};
+const caps = {
+        'platformName': 'Android',
+        'appium:platformVersion': '12.0',
+        'appium:deviceName': 'Pixel XL API 31 2',
+        'appium:automationName': 'UIAutomator2',
+        'appium:browserName': 'chrome',
+        'appium:chromedriver_autodownload': 'true',
+        'appium:chromedriverExecutable': path.join(process.cwd(), './app/chromedriver.exe')
+}
 
 
 exports.config = {
-    runner: 'local', 
+    runner: 'local',
     port: 4723,
     specs: ['./features/**/*.feature'],
     exclude: [],
@@ -38,7 +38,7 @@ exports.config = {
         tagExpression: '',
         timeout: 60000,
         ignoreUndefinedDefinitions: false
-    },
+    }
 
         // Import the Allure Appium plugin
 
@@ -167,7 +167,7 @@ exports.config = {
      */
     // afterFeature: function (uri, feature) {
     // },
-    
+
     /**
      * Runs after a WebdriverIO command gets executed
      * @param {String} commandName hook command name

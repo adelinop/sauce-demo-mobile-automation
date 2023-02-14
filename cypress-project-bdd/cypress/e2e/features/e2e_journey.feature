@@ -1,17 +1,18 @@
-Feature: Basic Tests
-   Feature to test basics scenarios 
+Feature: The Internet Guinea Pig Website
+Feature: Complete Order
+  As a registered user
+  I want to add an item to the cart and complete the order
 
   Background: 
-    Given I access the system
+    Given I am on the login page
 
-  Scenario Outline: Place order complete
-    Given I make login using <username> and <password>
-    And I add a Backpack in the cart
-    And I proceed to the cart
-    And I proceed to checkout page
-    When I fill the personal data
-    And I finish the order process
-    Then I can see the confirmation message <message>
+  Scenario Outline: Add item to cart and complete order
+    Given I am logged in with <username> and <password> credentials
+    When I add an item to the cart
+    And I go to the checkout page
+    And I fill in the necessary personal information
+    And I complete the order process
+    Then I see the confirmation message <message>
 
     Examples: 
       | username        | password       | message                    |

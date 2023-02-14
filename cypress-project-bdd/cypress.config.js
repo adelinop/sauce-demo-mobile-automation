@@ -8,8 +8,6 @@ module.exports = defineConfig({
 	trashAssetsBeforeRuns: true,
 	defaultCommandTimeout: 15000,
 	chromeWebSecurity: false,
-	viewportWidth: 1920,
-	viewportHeight: 1080,
 	reporterOptions: {
 		reportDir: 'reports',
 		overwrite: true

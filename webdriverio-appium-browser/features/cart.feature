@@ -13,5 +13,5 @@ Scenario Outline: Add item to cart
 
     
     Examples:
-      | username        | password       | message                    |
-      | 'standard_user' | 'secret_sauce' | 'THANK YOU FOR YOUR ORDER' |
+      | username        | password       |
+      | 'standard_user' | 'secret_sauce' | 

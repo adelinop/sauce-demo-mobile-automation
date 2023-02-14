@@ -3,28 +3,26 @@ import Applications from '../support/pages/application'
 const applications = new Applications()
 export default class CommonSteps {}
 
-Given('I access the system', () => {
+Given('I am on the login page', () => {
 	cy.visit('')
 })
 
-Given('I make login using {string} and {string}', (user, password) => {
+Given('I am logged in with {string} and {string} credentials', (user, password) => {
 	applications.homePage.loginAcess(user, password)
 })
-When('I add a Backpack in the cart', () => {
+When('I add an item to the cart', () => {
 	applications.listProductPage.addBackpackToCart()
 })
-When('I proceed to the cart', () => {
+When('I go to the checkout page', () => {
 	applications.listProductPage.accessCartPage()
-})
-When('I proceed to checkout page', () => {
 	applications.cartPage.accessCheckout()
 })
-When('I fill the personal data', () => {
+When('I fill in the necessary personal information', () => {
 	applications.cartPage.fillPersonaldata()
 })
-When('I finish the order process', () => {
+When('I complete the order process', () => {
 	applications.cartPage.finishCartProcess()
 })
-Then('I can see the confirmation message {string}', value => {
+Then('I see the confirmation message {string}', value => {
 	applications.confirmationPage.verifyConfirmationMessage(value)
 })

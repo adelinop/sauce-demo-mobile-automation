@@ -1,21 +1,21 @@
-Feature: Login tests
-   Feature to test login scenarios  
+Feature: Login Functionality
+   To ensure secure login for users
 
   Background: 
-    Given I access the system
+    Given I am on the login page
 
-  Scenario Outline: Test valid login
-    Given I make login using <username> and <password>
-    Then I can access the system
-
-    Examples: 
-      | username        |  | password       |
-      | 'standard_user' |  | 'secret_sauce' |
-
-  Scenario Outline: Test Invalid login
-    Given I make login using <username> and <password>
-    Then I can see the error message
+  Scenario Outline: Valid Login
+    Given I am logged in with <username> and <password> credentials
+    Then I should be logged in to the system
 
     Examples: 
-      | username       |  | password |
-      | 'problem_user' |  | '123'    |
+      | username        | password       |
+      | 'standard_user' | 'secret_sauce' |
+
+  Scenario Outline: Invalid Login
+    Given I am logged in with <username> and <password> credentials
+    Then I should see an error message
+
+    Examples: 
+      | username       | password |
+      | 'problem_user' | '123'    |
