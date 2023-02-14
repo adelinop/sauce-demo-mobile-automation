@@ -8,11 +8,8 @@ let caps = {
         "appium:chromedriver_autodownload": "true",
         "appium:chromedriverExecutable": path.join(process.cwd(),"./app/chromedriver.exe")
 };
-const allure = require('allure-commandline');
-const allureAppiumPlugin = require('allure-appium-plugin');
 
-// Configure the Allure Appium plugin
-allure.use(allureAppiumPlugin);
+
 exports.config = {
     runner: 'local', 
     port: 4723,
@@ -50,28 +47,6 @@ exports.config = {
 
 
     // Add a hook to generate the Allure report after the entire test suite is complete
-    after: function(exitCode, config, capabilities) {
-    allure(['generate', 'allure-results', '--clean']);
-    },
-
-    reporters: [
-        'spec',
-        ['allure', {
-        outputDir: './allure-results',
-        disableWebdriverStepsReporting: true,
-        disableWebdriverScreenshotsReporting: true,
-        }],
-    ],
-    afterTest: async function(test) {
-        if (test.error !== undefined) {
-          await driver.takeScreenshot();
-          allure.createAttachment('Screenshot', await driver.takeScreenshot(), 'image/png');
-        }
-        allure.addFeature(test.parent);
-        allure.addLabel('severity', 'critical');
-        allure.endCase(test.error === undefined ? 'passed' : 'failed');
-    },
-    
     //
     // =====
     // Hooks
